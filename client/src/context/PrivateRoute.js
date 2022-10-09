@@ -4,13 +4,11 @@ import CourseContext from "../context/Context";
 
 
 export const PrivateRoute = ({ children }) => {
-    //import from router dom
     const location = useLocation();
 
-    //import from context api
     const { authenticatedUser } = useContext(CourseContext);
 
-    //if user is logged in, they are allowed in the protected route and if not then redirect to login page
+//make unauthenticated user log in or redirect to the previous route if authenticated and eligible
     return authenticatedUser ? children : <Navigate to="/signin" replace state={{ from: location }}/>
 
 }

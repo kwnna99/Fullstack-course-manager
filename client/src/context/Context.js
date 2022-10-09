@@ -26,6 +26,7 @@ export function Provider({ children }) {
         return fetch(url, options);
     }
     
+    //api calls functions
     const getUser = async(username, password) =>{
         const response = await apiCall(`/users`, 'GET', null, true, { username, password });
         if(response.status === 200) {
@@ -126,15 +127,15 @@ export function Provider({ children }) {
             throw new Error();
         }
     }
-    //Set cookies
+    //Cookies
     const authCookie = Cookies.get('authenticatedUser');
     const userCookie = Cookies.get('userCreds')
 
-    //Set states
+    //States
     const [ authenticatedUser, setAuthenticatedUser ] = useState(() => ( authCookie ? JSON.parse(authCookie) : null));
     const [ userCreds, setUserCreds ] = useState(() => (userCookie ? JSON.parse(userCookie) : null))
 
-    //sign in authentication that sets the cookies
+    //sign in and set the cookies
     const signInAuth = async(username, password) => {
       const creds = { username, password }
       const user = await getUser(username,password);
@@ -152,7 +153,7 @@ export function Provider({ children }) {
       return user;
     }
 
-    //sign out function that removies cookies and resets states
+//remove cookies and log out the user
     const signOut = async() => {
       setAuthenticatedUser(null);
       setUserCreds(null);
@@ -160,7 +161,6 @@ export function Provider({ children }) {
       Cookies.remove('userCreds');
     }
 
-    //context provider that provides all the functions
     return(
         <Context.Provider value={{ getAllCourses, getCourse, signInAuth, signOut, updateCourse, authenticatedUser, createUser, createCourse, deleteCourse, userCreds }}>
             {children}

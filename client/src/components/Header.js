@@ -4,7 +4,6 @@ import Context from "../context/Context";
 
 export function Header() {
     
-    //import from context api
     const { authenticatedUser } = useContext(Context);
 
     return(

@@ -5,10 +5,8 @@ import Context from "../context/Context";
 
 export function UserSignUp () {
 
-    //import from router dom
     const navigate = useNavigate();
 
-    //import from context api
     const { createUser, signInAuth } = useContext(Context);
 
     //state hooks
@@ -18,7 +16,7 @@ export function UserSignUp () {
     const [ password, setPassword ] = useState('');
     const [ errors, setErrors ] = useState('');
 
-    //handles creating a new user
+    //handles creating a new user on submit
     const handleSubmit = (e) => {
         e.preventDefault();
         const user = {
@@ -45,7 +43,7 @@ export function UserSignUp () {
             })
     }
 
-//navigate the user to the main screen if they don't sign up
+    //navigate the user to the main screen if they don't sign up
     const cancelHandler = () =>{
         navigate('/');
     }

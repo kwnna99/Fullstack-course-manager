@@ -62,7 +62,7 @@ export function UpdateCourse () {
                 console.log('Course could not be updated')
             })
     }
-//if the user cancels the update, take them to the course overview page
+    //if the user cancels the update, take them to the course overview page
     const cancelHandler = () =>{
         navigate(`/courses/${id}`);
     }

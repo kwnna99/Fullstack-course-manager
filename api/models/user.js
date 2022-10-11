@@ -64,6 +64,7 @@ module.exports = (sequelize) => {
         }
       },
       set(val) {
+        //if a value has been entered, hash the password
           if(val){
               const hashedPassword = bcrypt.hashSync(val,10);
               this.setDataValue('password',hashedPassword);
@@ -74,7 +75,6 @@ module.exports = (sequelize) => {
   }, { sequelize });
 
   User.associate = (models) => {
-    // TODO Add associations.
     User.hasMany(models.Course, {
       foreignKey: {
         fieldName: 'userId',

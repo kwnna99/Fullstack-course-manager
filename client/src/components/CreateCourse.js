@@ -5,10 +5,8 @@ import Context from "../context/Context";
 
 export function CreateCourse() {
 
-    //imports from context Api
     const { authenticatedUser, createCourse, userCreds } = useContext(Context);
 
-    //import from react router dom
     const navigate = useNavigate();
 
     //States
@@ -18,7 +16,7 @@ export function CreateCourse() {
     const [ materialsNeeded, setMaterialsNeeded ] = useState('');
     const [ errors, setErrors ] = useState('');
 
-// handles course creation on form submission
+    // handles course creation on form submission
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = {
@@ -44,7 +42,7 @@ export function CreateCourse() {
             })
     }
 
-//redirect the user to the course list if they click on cancel
+    //redirect the user to the course list if they click on cancel
     const cancelHandler = () =>{
         navigate(`/`);
     }

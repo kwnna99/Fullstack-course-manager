@@ -5,6 +5,15 @@ import Cookies from "js-cookie";
 export const Context = React.createContext();
 
 export function Provider({ children }) {
+    /**
+     * 
+     * @param {string} path 
+     * @param {string} method 
+     * @param {object} body 
+     * @param {boolean} requireAuth 
+     * @param {object} credentials 
+     * @returns a fetch function with the above data
+     */
     const apiCall = (path, method = 'GET',body = null, requireAuth = false, credentials = null) => {
         const url = 'http://localhost:5000/api' + path;
     
@@ -27,6 +36,12 @@ export function Provider({ children }) {
     }
     
     //api calls functions
+    /**
+     * 
+     * @param {string} username the user's username
+     * @param {string} password the user's password
+     * @returns the user data, response status or error
+     */
     const getUser = async(username, password) =>{
         const response = await apiCall(`/users`, 'GET', null, true, { username, password });
         if(response.status === 200) {
@@ -39,7 +54,13 @@ export function Provider({ children }) {
             throw new Error();
         }
     }
-    
+
+    /**
+     * sends a POST requrest to create a new user
+     * @param user the details of the user to be created
+     * @returns the response status or error received
+     */
+
     const createUser = async(user) => {
         const response = await apiCall('/users', 'POST', user);
         if(response.status === 201) {
@@ -55,6 +76,10 @@ export function Provider({ children }) {
         }
     }
     
+    /**
+     * GET request to fetch all courses
+     * @returns The resposne data, status or error received
+     */
     const getAllCourses = async() => {
         const response = await apiCall('/courses', 'GET');
             if (response.status === 200) {
@@ -70,6 +95,12 @@ export function Provider({ children }) {
                 throw new Error();
             }
     }
+
+    /**
+     * GET request to fetch a specific course
+     * @param id the ID of a course
+     * @returns the course data, response status or error received
+     */
     
     const getCourse = async(id) => {
         const response = await apiCall(`/courses/${id}`, 'GET');
@@ -89,6 +120,13 @@ export function Provider({ children }) {
             }
     }
     
+    /**
+     * 
+     * @param {object} data the course data
+     * @param {string} username the user's username
+     * @param {string} password the user's password
+     * @returns the response status if the request is successful or the response data
+     */
     const createCourse = async(data,username, password) => {
         const response = await apiCall(`/courses`, 'POST', data, true, {username, password});
         if(response.status === 201){
@@ -99,6 +137,14 @@ export function Provider({ children }) {
         }
     }
     
+    /**
+     * 
+     * @param {int} id the course's id
+     * @param {object} data course data
+     * @param {string} username the user's username
+     * @param {string} password the user's password
+     * @returns the response status or errors received
+     */
     const updateCourse = async(id,data, username, password) => {
         const response = await apiCall(`/courses/${id}`, 'PUT', data, true, {username, password});
             if(response.status === 204){
@@ -117,6 +163,13 @@ export function Provider({ children }) {
             }
     }
     
+        /**
+     * 
+     * @param {int} id the course's id
+     * @param {string} username the user's username
+     * @param {string} password the user's password
+     * @returns the response status
+     */
     const deleteCourse = async(id, username, password) => {
         const response = await apiCall(`/courses/${id}`, 'DELETE', null, true, { username, password });
         if(response.status === 403 || response.status===204 || response.status===404){

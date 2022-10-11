@@ -13,7 +13,7 @@ export function CourseDetail(){
     //States
     const [ course, setCourse ] = useState([]);
     const [ owner, setOwner ] = useState('');
-    const loginedIn = authenticatedUser ? authenticatedUser.firstName + ' ' + authenticatedUser.lastName : null;
+    const loggedIn = authenticatedUser ? authenticatedUser.firstName + ' ' + authenticatedUser.lastName : null;
     
     //fetch the course with that id
     useEffect(() => {
@@ -53,7 +53,7 @@ export function CourseDetail(){
     return(
         <main>
             <div className="actions--bar">
-            {loginedIn !== owner ? (                  
+            {loggedIn !== owner ? (                  
                 <div className="wrap">
                     <a className="button button-secondary" href="/">Return to List</a>
                 </div>

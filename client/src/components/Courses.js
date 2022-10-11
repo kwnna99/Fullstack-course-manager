@@ -11,7 +11,8 @@ export function Courses(){
 
     //states
     const [courses, setCourses] = useState([]);
-
+    
+//fetch all courses
     useEffect(() =>{
         getAllCourses()
             .then( res => {

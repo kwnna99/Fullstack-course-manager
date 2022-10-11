@@ -37,7 +37,7 @@ export function UserSignIn(){
             })
         e.currentTarget.reset();
     }
-//navigate the user to the course list if they cancel the login operation
+    //navigate the user to the course list if they cancel the login operation
     const cancelHandler = (e) =>{
         navigate('/');
     }

@@ -1,6 +1,6 @@
 # Fullstack course manager
 
-### Fullstack app created with React and a REST API (also added as a sandalone repository)
+### Fullstack app created with React and a REST API (also added as a standalone repository)
 
 ## How to use the code
 1. Clone the repository.

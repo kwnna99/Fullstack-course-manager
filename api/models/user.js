@@ -53,21 +53,24 @@ module.exports = (sequelize) => {
         },
       },
     password:{
-        type:Sequelize.STRING,
-        allowNull: false,
-        set(val) {
-            const hashedPassword = bcrypt.hashSync(val,10);
-            this.setDataValue('password',hashedPassword);
+      type:Sequelize.STRING,
+      allowNull: false,
+      validate:{
+        notNull:{
+          msg:'A Password is required.'
         },
-        validate:{
-            notNull:{
-                msg:'A password is required.',
-            },
-            notEmpty: {
-                msg: 'Password cannot be empty.'
-            }
-          },
-    }
+        notEmpty:{
+          msg: 'Password cannot be empty!'
+        }
+      },
+      set(val) {
+          if(val){
+              const hashedPassword = bcrypt.hashSync(val,10);
+              this.setDataValue('password',hashedPassword);
+          }
+              
+          }
+      }
   }, { sequelize });
 
   User.associate = (models) => {

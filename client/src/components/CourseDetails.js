@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import {  Link, useNavigate, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import CourseContext from '../context/Context';
 import ReactMarkdown from 'react-markdown';
 
